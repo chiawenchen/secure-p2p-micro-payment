@@ -1,0 +1,15 @@
+all: client
+
+.PHONY: client
+
+client: client.o SSL.o
+	g++ client.o SSL.o -o client -lssl -lcrypto
+
+client.o: client.cpp
+	g++ -c client.cpp
+
+SSL.o: SSL.h SSL.cpp
+	g++ -c SSL.cpp
+	
+clean:
+	rm *.o
